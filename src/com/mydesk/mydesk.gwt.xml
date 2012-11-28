@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module rename-to='mydesk'>
+  <inherits name='com.google.gwt.user.User' />
+  <inherits name="com.googlecode.objectify.Objectify" />
+  
+  <inherits name='com.google.gwt.user.theme.dark.Dark' />
+    
+  <entry-point class ='com.mydesk.client.FileFrontEnd' />
+  <source path='client' />
+  <source path='shared' />
+  
+</module>

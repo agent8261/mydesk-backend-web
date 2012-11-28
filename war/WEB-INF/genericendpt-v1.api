@@ -1,0 +1,76 @@
+{
+  "extends" : "thirdParty.api",
+  "root" : "https://imlctest.appspot.com/_ah/api",
+  "name" : "genericendpt",
+  "version" : "v1",
+  "adapter" : {
+    "bns" : "http://imlctest.appspot.com/_ah/spi",
+    "deadline" : 10.0,
+    "type" : "lily"
+  },
+  "auth" : {
+  },
+  "frontendLimits" : {
+    "rules" : [ ]
+  },
+  "cacheControl" : {
+  },
+  "methods" : {
+    "genericendpt.getTest" : {
+      "path" : "genericbuffer",
+      "httpMethod" : "GET",
+      "rosyMethod" : "GenericEndpoint.getTest",
+      "request" : {
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "genericendpt.getFile" : {
+      "path" : "genericbuffer/{fileName}",
+      "httpMethod" : "GET",
+      "rosyMethod" : "GenericEndpoint.getFileUrl",
+      "request" : {
+        "parameters" : {
+          "fileName" : {
+            "required" : true,
+            "type" : "string"
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    }
+  },
+  "descriptor" : {
+    "schemas" : {
+      "GenericBuffer" : {
+        "id" : "GenericBuffer",
+        "type" : "object",
+        "properties" : {
+          "PBufMsg" : {
+            "type" : "string"
+          },
+          "data" : {
+            "type" : "string"
+          }
+        }
+      }
+    },
+    "methods" : {
+      "GenericEndpoint.getTest" : {
+        "response" : {
+          "$ref" : "GenericBuffer"
+        }
+      },
+      "GenericEndpoint.getFileUrl" : {
+        "response" : {
+          "$ref" : "GenericBuffer"
+        }
+      }
+    }
+  }
+}

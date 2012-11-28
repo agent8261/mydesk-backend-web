@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?><web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.5" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+  
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+  
+  <listener>
+      <listener-class>com.mydesk.server.StartContext</listener-class>
+  </listener>
+  
+  <servlet>
+      <servlet-name>CloudUploader</servlet-name>
+      <servlet-class>com.mydesk.server.CloudServer</servlet-class>
+      <load-on-startup>1</load-on-startup>
+  </servlet>
+  
+  <servlet-mapping>
+      <servlet-name>CloudUploader</servlet-name>
+      <url-pattern>/mydesk/cloud</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+      <servlet-name>BlobUploader</servlet-name>
+      <servlet-class>com.mydesk.server.BlobUploader</servlet-class>
+      <load-on-startup>1</load-on-startup>
+  </servlet>
+  
+  <servlet-mapping>
+      <servlet-name>BlobUploader</servlet-name>
+      <url-pattern>/mydesk/uploader</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+      <servlet-name>BlobServer</servlet-name>
+      <servlet-class>com.mydesk.server.BlobServer</servlet-class>
+      <load-on-startup>1</load-on-startup>
+  </servlet>
+  
+  <servlet-mapping>
+      <servlet-name>BlobServer</servlet-name>
+      <url-pattern>/mydesk/server</url-pattern>
+  </servlet-mapping>  
+    
+  <servlet>
+      <servlet-name>FileDownload</servlet-name>
+      <servlet-class>com.mydesk.server.FileDownloadSrvcImpl</servlet-class>
+      <load-on-startup>2</load-on-startup>      
+  </servlet>
+  
+  <servlet-mapping>
+      <servlet-name>FileDownload</servlet-name>
+      <url-pattern>/mydesk/filedownload</url-pattern>
+  </servlet-mapping>
+    
+ <servlet>
+  <servlet-name>SystemServiceServlet</servlet-name>
+  <servlet-class>com.google.api.server.spi.SystemServiceServlet</servlet-class>
+  <load-on-startup>3</load-on-startup>
+  <init-param>
+   <param-name>services</param-name>
+   <param-value>com.mydesk.DeviceInfoEndpoint,com.mydesk.server.GenericEndpoint</param-value>
+  </init-param>
+ </servlet>
+ 
+ <servlet-mapping>
+  <servlet-name>SystemServiceServlet</servlet-name>
+  <url-pattern>/_ah/spi/*</url-pattern>
+ </servlet-mapping>
+
+<filter>
+        <filter-name>ObjectifyFilter</filter-name>
+        <filter-class>com.googlecode.objectify.ObjectifyFilter</filter-class>
+</filter>
+
+<filter-mapping>
+        <filter-name>ObjectifyFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+</filter-mapping>
+
+</web-app>

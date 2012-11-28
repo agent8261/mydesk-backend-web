@@ -1,0 +1,147 @@
+{
+  "extends" : "thirdParty.api",
+  "root" : "https://imlctest.appspot.com/_ah/api",
+  "name" : "deviceinfoendpoint",
+  "version" : "v1",
+  "adapter" : {
+    "bns" : "http://imlctest.appspot.com/_ah/spi",
+    "deadline" : 10.0,
+    "type" : "lily"
+  },
+  "auth" : {
+  },
+  "frontendLimits" : {
+    "rules" : [ ]
+  },
+  "cacheControl" : {
+  },
+  "methods" : {
+    "deviceinfoendpoint.removeDeviceInfo" : {
+      "path" : "deviceinfo/{id}",
+      "httpMethod" : "DELETE",
+      "rosyMethod" : "DeviceInfoEndpoint.removeDeviceInfo",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "required" : true,
+            "type" : "string"
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "deviceinfoendpoint.insertDeviceInfo" : {
+      "path" : "deviceinfo",
+      "httpMethod" : "POST",
+      "rosyMethod" : "DeviceInfoEndpoint.insertDeviceInfo",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "deviceinfoendpoint.listDeviceInfo" : {
+      "path" : "deviceinfo",
+      "httpMethod" : "GET",
+      "rosyMethod" : "DeviceInfoEndpoint.listDeviceInfo",
+      "request" : {
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "deviceinfoendpoint.getDeviceInfo" : {
+      "path" : "deviceinfo/{id}",
+      "httpMethod" : "GET",
+      "rosyMethod" : "DeviceInfoEndpoint.getDeviceInfo",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "required" : true,
+            "type" : "string"
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "deviceinfoendpoint.updateDeviceInfo" : {
+      "path" : "deviceinfo",
+      "httpMethod" : "PUT",
+      "rosyMethod" : "DeviceInfoEndpoint.updateDeviceInfo",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    }
+  },
+  "descriptor" : {
+    "schemas" : {
+      "DeviceInfo" : {
+        "id" : "DeviceInfo",
+        "type" : "object",
+        "properties" : {
+          "deviceRegistrationID" : {
+            "type" : "string"
+          }
+        }
+      },
+      "DeviceInfoCollection" : {
+        "id" : "DeviceInfoCollection",
+        "type" : "object",
+        "properties" : {
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "DeviceInfo"
+            }
+          }
+        }
+      }
+    },
+    "methods" : {
+      "DeviceInfoEndpoint.removeDeviceInfo" : {
+        "response" : {
+          "$ref" : "DeviceInfo"
+        }
+      },
+      "DeviceInfoEndpoint.insertDeviceInfo" : {
+        "request" : {
+          "$ref" : "DeviceInfo"
+        },
+        "response" : {
+          "$ref" : "DeviceInfo"
+        }
+      },
+      "DeviceInfoEndpoint.listDeviceInfo" : {
+        "response" : {
+          "$ref" : "DeviceInfoCollection"
+        }
+      },
+      "DeviceInfoEndpoint.getDeviceInfo" : {
+        "response" : {
+          "$ref" : "DeviceInfo"
+        }
+      },
+      "DeviceInfoEndpoint.updateDeviceInfo" : {
+        "request" : {
+          "$ref" : "DeviceInfo"
+        },
+        "response" : {
+          "$ref" : "DeviceInfo"
+        }
+      }
+    }
+  }
+}
